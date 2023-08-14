@@ -1,6 +1,7 @@
 module.exports = (mongooseObj) => {
     const userSchema = new mongooseObj.Schema({
         _id: String,
+        password: String,
         namaLengkap: String,
         alamat: String,
         hp: String,

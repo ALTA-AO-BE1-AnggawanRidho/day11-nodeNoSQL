@@ -1,7 +1,7 @@
 module.exports = (mongooseObj) => {
     const itemSchema = new mongooseObj.Schema({
-        namaBarang: String,
-        jumlahBarang: Number
+        _id: String,
+        namaBarang: String
     });
     const barang = new mongooseObj.model('item', itemSchema);
     return barang;
