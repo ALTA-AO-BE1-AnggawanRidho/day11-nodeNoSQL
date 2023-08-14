@@ -24,7 +24,17 @@ exports.delete = async(idBarang) => {
     try {
         await barang.findOneAndDelete({ _id: idBarang });
     } catch (err) {
-        return console.error(`Error saat menghapus, user kemungkinan tidak ada di database`, err);
+        return console.error(`Error saat menghapus, user kemungkinan tidak ada di database`);
+    }
+}
+
+exports.getAll = async() => {
+    try {
+        const allBarang = await barang.find({},{ _id: 1, namaBarang: 1 });
+        console.log(allBarang);
+    } catch (err) {
+        console.error(`Error while retrieving data from the 'barang' collection:`);
+        return null;
     }
 }
 

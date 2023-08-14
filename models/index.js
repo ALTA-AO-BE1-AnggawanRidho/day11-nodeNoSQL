@@ -5,7 +5,7 @@ try {
         // console.log(`Connected to Database`);
     });
 } catch (e) {
-    console.error(e);
+    console.error('ini gagal connext');
 }
 
 const db = {};

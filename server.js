@@ -1,13 +1,11 @@
 const mongoose = require('mongoose');
 const prompt = require('prompt-sync')();
 const controller = require('./controller');
-const { barang } = require('./models');
 
 var isRunning = true;
 
 (async () => {
     while (isRunning) {
-        console.clear();
         console.log(`-----Menu Utama-----`);
         console.log('1. Register User');
         console.log('2. Login User');
@@ -44,25 +42,31 @@ var isRunning = true;
                 console.log(`0. Keluar Manajemen`);
         
                 let input = prompt('Pilihan menu : ');
-                
-                
+
                 if(Number(input) === 1){
                     let idBarang = prompt('ID Barang : ');
                     let namaBarang = prompt('Nama Barang : ');
                     await controller.barang.insert(username, idBarang, namaBarang).then(console.clear());
                 };
+                if(Number(input) === 2){
+                    console.clear();
+                    await controller.barang.getAll();
+                };
+                if(Number(input) === 3){
+                    console.clear()
+                    await controller.barang.getAll();
+                    let idBarang = prompt('ID Barang uang akan dihapus : ');
+                    await controller.barang.delete(idBarang).then(console.clear());
+                };
                 if(Number(input) === 0){
+                    console.clear()
                     isAuthenticated = !isAuthenticated;
                 };
             }
-            // let res = await ctl.getAll();
-            // res.forEach(element => {
-            //     console.log(element.dataValues);
-                
-            // });
         }
 
         if(Number(input) === 3){
+            await controller.users.getAll();
             let username = prompt('Masukkan username untuk dihapus: ');
             await controller.users.delete(username).then(`User ${username} berhasil dihapus`);
         }
@@ -72,8 +76,5 @@ var isRunning = true;
             isRunning = !isRunning;
         }
     }
-
-    // await controller.users.insert('gagakucing', 'Hari Tanoe', 'Jakarta', '87366276');
-    // await controller.barang.insert('laptopgaming');
     mongoose.connection.close();
 })();

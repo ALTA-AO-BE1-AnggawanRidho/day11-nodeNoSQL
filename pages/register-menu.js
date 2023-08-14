@@ -1,6 +1,6 @@
+const mainMenu = require('./main-menu');
 const prompt = require('prompt-sync')();
 const controller = require('../controller');
-const mainMenu = require('./main-menu');
 
 const registerMenu = async () => {
     console.clear();
@@ -9,10 +9,8 @@ const registerMenu = async () => {
     let name = prompt(`Masukkan Nama Lengkap \t: `);
     let address = prompt(`Masukkan alamat \t: `);
     let phone = prompt(`Masukkan No. telepon \t: `);
-    controller.users.insert(username, name, address, phone);
-    return setTimeout(async () => {
-        mainMenu();
-    }, 2000);
+    await controller.users.insert(username, name, address, phone);
+    mainMenu();
 }
 
 module.exports = registerMenu;

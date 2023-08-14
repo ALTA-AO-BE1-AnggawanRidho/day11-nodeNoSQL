@@ -5,6 +5,9 @@ module.exports = (mongooseObj) => {
         namaLengkap: String,
         alamat: String,
         hp: String,
+    },
+    {
+        strict: false
     });
     const user = new mongooseObj.model('users' , userSchema);
     return user;
